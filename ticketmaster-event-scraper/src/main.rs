@@ -14,11 +14,9 @@ async fn main() -> Result<(), Error> {
     let api_key = env::var("TICKETMASTER_API_KEY").expect("TICKETMASTER_API_KEY must be set");
 
     let mut city_to_dma = HashMap::new();
-    city_to_dma.insert("New York", "345");
-    city_to_dma.insert("Los Angeles", "324");
+    city_to_dma.insert("Barcelona", "902");
+    
     // Add more cities and their corresponding DMA codes here
-
-    let mut 
 
     println!("Enter a city:");
     let mut city = String::new();
