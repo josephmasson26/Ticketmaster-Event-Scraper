@@ -5,6 +5,16 @@ use std::env;
 use std::io;
 
 #[derive(Deserialize, Debug)]
+struct ApiResponse {
+    _embedded: EmbeddedEvents,
+}
+
+#[derive(Deserialize, Debug)]
+struct EmbeddedEvents {
+    events: Vec<Event>,
+}
+
+#[derive(Deserialize, Debug)]
 struct Event {
     name: String,
     dates: Dates,
@@ -18,7 +28,7 @@ struct Dates {
 
 #[derive(Deserialize, Debug)]
 struct Start {
-    localDate: String,
+    local_date: String,
 }
 
 #[derive(Deserialize, Debug)]
@@ -30,6 +40,7 @@ struct Embedded {
 struct Venue {
     name: String,
 }
+
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
@@ -54,11 +65,11 @@ async fn main() -> Result<(), Error> {
     let url = format!("https://app.ticketmaster.com/discovery/v2/events.json?dmaId={}&apikey={}", dma, api_key);
 
     let response = reqwest::get(&url).await?;
-    let events: Vec<Event> = response.json().await?;
+    let api_response: ApiResponse = response.json().await?;
 
-    for event in events {
+    for event in api_response._embedded.events {
         println!("Event Name: {}", event.name);
-        println!("Date: {}", event.dates.start.localDate);
+        println!("Date: {}", event.dates.start.local_date);
         println!("Venue: {}", event._embedded.venues[0].name);
     }
 
