@@ -15,8 +15,8 @@ async fn main() -> Result<(), Error> {
 
     let mut city_to_dma = HashMap::new();
     city_to_dma.insert("Barcelona", "902");
-    
     // Add more cities and their corresponding DMA codes here
+    // Add Hashmap later? Or an object of some type without 900 insert statements
 
     println!("Enter a city:");
     let mut city = String::new();
@@ -24,8 +24,9 @@ async fn main() -> Result<(), Error> {
     let city = city.trim();
 
     let dma: &&str = match city_to_dma.get(city) {
-        Some(dma) => dma,
-        None => return Err(Error::new(io::Error::new(io::ErrorKind::Other, "City not found"))),
+        Some(dma)=>dma,
+        None => todo!(), 
+        //todo is a macro for unimplemented!()
     };
 
     let url = format!("https://app.ticketmaster.com/discovery/v2/events.json?dmaId={}&apikey={}", dma, api_key);
