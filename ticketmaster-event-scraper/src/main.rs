@@ -6,7 +6,29 @@ use std::io;
 
 #[derive(Deserialize, Debug)]
 struct Event {
-    // Define the fields of the Event struct here based on the API response
+    name: String,
+    dates: Dates,
+    _embedded: Embedded,
+}
+
+#[derive(Deserialize, Debug)]
+struct Dates {
+    start: Start,
+}
+
+#[derive(Deserialize, Debug)]
+struct Start {
+    localDate: String,
+}
+
+#[derive(Deserialize, Debug)]
+struct Embedded {
+    venues: Vec<Venue>,
+}
+
+#[derive(Deserialize, Debug)]
+struct Venue {
+    name: String,
 }
 
 #[tokio::main]
@@ -20,7 +42,7 @@ async fn main() -> Result<(), Error> {
 
     println!("Enter a city:");
     let mut city = String::new();
-    io::stdin().read_line(&mut city)?;
+    let _ = io::stdin().read_line(&mut city);
     let city = city.trim();
 
     let dma: &&str = match city_to_dma.get(city) {
@@ -35,7 +57,9 @@ async fn main() -> Result<(), Error> {
     let events: Vec<Event> = response.json().await?;
 
     for event in events {
-        println!("{:#?}", event);
+        println!("Event Name: {}", event.name);
+        println!("Date: {}", event.dates.start.localDate);
+        println!("Venue: {}", event._embedded.venues[0].name);
     }
 
     Ok(())
