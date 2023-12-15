@@ -18,12 +18,28 @@ struct EmbeddedEvents {
 struct Event {
     name: String,
     dates: Dates,
+    classifications: Vec<Classification>,
     _embedded: Embedded,
 }
 
 #[derive(Deserialize, Debug)]
+struct Classification {
+    genre: Genre,
+}
+
+#[derive(Deserialize, Debug)]
+struct Genre {
+    name: String,
+}
+
+#[derive(Deserialize, Debug)]
 struct Dates {
-    start: Start,
+    start: LocalDate,
+}
+
+#[derive(Deserialize, Debug)]
+struct LocalDate {
+    local_date: String,
 }
 
 #[derive(Deserialize, Debug)]
@@ -69,7 +85,7 @@ async fn main() -> Result<(), Error> {
 
     for event in api_response._embedded.events {
         println!("Event Name: {}", event.name);
-        println!("Date: {}", event.dates.start.local_date);
+        println!("Event Date: {}", event.dates.start.local_date);
         println!("Venue: {}", event._embedded.venues[0].name);
     }
 
