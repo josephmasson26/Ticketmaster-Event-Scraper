@@ -69,7 +69,7 @@ async fn main() -> Result<(), Error> {
 
     println!("Enter a city:");
     let mut city = String::new();
-    let _ = io::stdin().read_line(&mut city);
+    io::stdin().read_line(&mut city).expect("Failed to input city");
     let city = city.trim();
 
     let dma: &&str = match city_to_dma.get(city) {
