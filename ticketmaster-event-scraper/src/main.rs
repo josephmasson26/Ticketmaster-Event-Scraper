@@ -25,16 +25,42 @@ struct Event {
     url: String,
     locale: String,
     images: Vec<Image>,
+    dates: Dates,
 }
 
 #[derive(Debug, Deserialize)]
 struct Image {
-    ratio: String,
+    ratio: Option<String>,
     url: String,
     width: u32,
     height: u32,
     fallback: bool,
 }
+
+#[derive(Debug, Deserialize)]
+struct Dates {
+    start: Start,
+    timezone: String,
+    status: Status,
+    spanMultipleDays: bool,
+}
+
+#[derive(Debug, Deserialize)]
+struct Start {
+    localDate: String,
+    localTime: Option<String>,
+    dateTime: String,
+    dateTBD: bool,
+    dateTBA: bool,
+    timeTBA: bool,
+    noSpecificTime: bool,
+}
+
+#[derive(Debug, Deserialize)]
+struct Status {
+    code: String,
+}
+
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
@@ -68,6 +94,8 @@ async fn main() -> Result<(), Error> {
     if let Some(embedded) = api_response._embedded {
         for event in embedded.events {
             println!("Event Name: {}", event.name);
+            println!("Date: {}", event.dates.start.localDate);
+            println!("Time: {}", event.dates.start.localTime.as_ref().unwrap_or(&"Not Provided".to_string()));
         }
     } else {
         println!("No events found.");
