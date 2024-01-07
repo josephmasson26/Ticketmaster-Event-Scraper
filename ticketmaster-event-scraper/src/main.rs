@@ -91,7 +91,8 @@ async fn main() -> Result<(), Error> {
 
     let api_response: ApiResponse = serde_json::from_str(&response_body).expect("Unable to deserialize response");
 
-    if let Some(embedded) = api_response._embedded {
+    if let Some(mut embedded) = api_response._embedded {
+        embedded.events.sort_by(|a, b| a.dates.start.localDate.cmp(&b.dates.start.localDate));
         for event in embedded.events {
             println!(
                 "Event Name: {}, Date: {}, Time: {}",
