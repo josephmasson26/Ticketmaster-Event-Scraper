@@ -112,13 +112,12 @@ async fn main() -> Result<(), Error> {
 
     // Make the API call
     let response = reqwest::get(url).await?;
-
-    
     let response_body = response.text().await?;
-
     let api_response: ApiResponse = serde_json::from_str(&response_body).expect("Unable to deserialize response");
 
+    // Print the results
     if let Some(mut embedded) = api_response._embedded {
+        // Sort the events by date
         embedded.events.sort_by(|a, b| a.dates.start.localDate.cmp(&b.dates.start.localDate));
         for event in embedded.events {
             println!(
