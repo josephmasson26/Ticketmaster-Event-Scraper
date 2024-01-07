@@ -1,0 +1,1 @@
+/Users/josephmasson/Documents/GitHub/Ticketmaster-Event-Scraper/ticketmaster-event-scraper/target/release/ticketmaster-event-scraper: /Users/josephmasson/Documents/GitHub/Ticketmaster-Event-Scraper/ticketmaster-event-scraper/src/dma.rs /Users/josephmasson/Documents/GitHub/Ticketmaster-Event-Scraper/ticketmaster-event-scraper/src/main.rs
