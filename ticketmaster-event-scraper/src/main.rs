@@ -1,3 +1,20 @@
+// Ticketmaster API Documentation: https://developer.ticketmaster.com/products-and-docs/apis/getting-started/
+// Ticketmaster API Explorer: https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-events-v2
+// Supported DMA: https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#supported-dma
+// Developed Joseph Masson 2024
+
+//This is a simple program that takes a city as input and returns a list of music events in that city from 
+//Ticketmaster's Discovery API. The program uses the DMA ID of the city to make the API call with a HashMap.
+
+//I built this project to practice RUST and API usage!
+
+//To run this program, you must have a Ticketmaster API key. 
+//You can get one here: https://developer.ticketmaster.com/products-and-docs/apis/getting-started/
+
+
+//Program Code:
+
+
 #![allow(warnings)]
 
 
@@ -107,3 +124,7 @@ async fn main() -> Result<(), Error> {
 
     Ok(())
 }
+
+//Known limitations - program only shows the top 20 events by city, and only shows music events.
+//International DMA codes are not supported, which is a limitation of the Ticketmaster API not represented
+//in the documentation.
