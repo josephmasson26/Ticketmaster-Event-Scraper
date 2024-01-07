@@ -1,6 +1,8 @@
+#![allow(warnings)]
+
+
 use reqwest::Error;
 use serde::Deserialize;
-use std::collections::HashMap;
 use std::env;
 use std::io;
 
