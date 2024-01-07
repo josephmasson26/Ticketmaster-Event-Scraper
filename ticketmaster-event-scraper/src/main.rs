@@ -4,59 +4,37 @@ use std::collections::HashMap;
 use std::env;
 use std::io;
 
-#[derive(Deserialize, Debug)]
+
+#[derive(Debug, Deserialize)]
 struct ApiResponse {
-    _embedded: EmbeddedEvents,
+    _embedded: Option<Embedded>,
 }
 
-#[derive(Deserialize, Debug)]
-struct EmbeddedEvents {
+#[derive(Debug, Deserialize)]
+struct Embedded {
     events: Vec<Event>,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Debug, Deserialize)]
 struct Event {
     name: String,
-    dates: Dates,
-    classifications: Vec<Classification>,
-    _embedded: Embedded,
+    #[serde(rename = "type")]
+    event_type: String,
+    id: String,
+    test: bool,
+    url: String,
+    locale: String,
+    images: Vec<Image>,
 }
 
-#[derive(Deserialize, Debug)]
-struct Classification {
-    genre: Genre,
+#[derive(Debug, Deserialize)]
+struct Image {
+    ratio: String,
+    url: String,
+    width: u32,
+    height: u32,
+    fallback: bool,
 }
-
-#[derive(Deserialize, Debug)]
-struct Genre {
-    name: String,
-}
-
-#[derive(Deserialize, Debug)]
-struct Dates {
-    start: LocalDate,
-}
-
-#[derive(Deserialize, Debug)]
-struct LocalDate {
-    local_date: String,
-}
-
-#[derive(Deserialize, Debug)]
-struct Start {
-    local_date: String,
-}
-
-#[derive(Deserialize, Debug)]
-struct Embedded {
-    venues: Vec<Venue>,
-}
-
-#[derive(Deserialize, Debug)]
-struct Venue {
-    name: String,
-}
-
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
@@ -83,10 +61,12 @@ async fn main() -> Result<(), Error> {
     let response = reqwest::get(&url).await?;
     let api_response: ApiResponse = response.json().await?;
 
-    for event in api_response._embedded.events {
-        println!("Event Name: {}", event.name);
-        println!("Event Date: {}", event.dates.start.local_date);
-        println!("Venue: {}", event._embedded.venues[0].name);
+    if let Some(embedded) = api_response._embedded {
+        for event in embedded.events {
+            println!("Event Name: {}", event.name);
+        }
+    } else {
+        println!("No events found.");
     }
 
     Ok(())

@@ -1,21 +1,4 @@
-HTTP/1.1 200 OK
-Rate-Limit-Over: 0
-Content-Length: 5360
-Rate-Limit-Available: 4723
-Set-Cookie: CMPS=0ytJbt229sTM7UXhHxC5IEvVNguFRwkBBUZ76aK9bmvRvAWZwe/RjM5TSH0yOXNFGd+urQFTC6o=; path=/
-Access-Control-Max-Age: 3628800
-Access-Control-Allow-Methods: GET, PUT, POST, DELETE
-Connection: keep-alive
-Server: Apache-Coyote/1.1
-Rate-Limit-Reset: 1457417554290
-Access-Control-Allow-Headers: origin, x-requested-with, accept
-Date: Mon, 07 Mar 2016 10:09:51 GMT
-Access-Control-Allow-Origin: *
-X-Application-Context: application:local,default,jphx1:8080
-Content-Type: application/json;charset=utf-8
-X-Unknown-Params: apikey
-X-Unknown-Params: api-key
-Rate-Limit: 5000
+
 
 {
   "_links":  {
