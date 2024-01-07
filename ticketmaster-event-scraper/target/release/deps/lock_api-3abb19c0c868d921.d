@@ -1,0 +1,10 @@
+/Users/josephmasson/Documents/GitHub/Ticketmaster-Event-Scraper/ticketmaster-event-scraper/target/release/deps/liblock_api-3abb19c0c868d921.rmeta: /Users/josephmasson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.11/src/lib.rs /Users/josephmasson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.11/src/mutex.rs /Users/josephmasson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.11/src/remutex.rs /Users/josephmasson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.11/src/rwlock.rs
+
+/Users/josephmasson/Documents/GitHub/Ticketmaster-Event-Scraper/ticketmaster-event-scraper/target/release/deps/liblock_api-3abb19c0c868d921.rlib: /Users/josephmasson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.11/src/lib.rs /Users/josephmasson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.11/src/mutex.rs /Users/josephmasson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.11/src/remutex.rs /Users/josephmasson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.11/src/rwlock.rs
+
+/Users/josephmasson/Documents/GitHub/Ticketmaster-Event-Scraper/ticketmaster-event-scraper/target/release/deps/lock_api-3abb19c0c868d921.d: /Users/josephmasson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.11/src/lib.rs /Users/josephmasson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.11/src/mutex.rs /Users/josephmasson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.11/src/remutex.rs /Users/josephmasson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.11/src/rwlock.rs
+
+/Users/josephmasson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.11/src/lib.rs:
+/Users/josephmasson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.11/src/mutex.rs:
+/Users/josephmasson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.11/src/remutex.rs:
+/Users/josephmasson/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lock_api-0.4.11/src/rwlock.rs:
