@@ -1,5 +1,9 @@
 use std::collections::HashMap;
 
+// This function defines the hashmap that maps cities to DMA IDs
+// Again, here are the DMA IDs for the cities I used in this project:
+// https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#supported-dma
+
 pub fn get_hashmap() -> HashMap<&'static str, &'static str> {
     let mut city_to_dma = HashMap::new();
     city_to_dma.insert("All of US", "200");
