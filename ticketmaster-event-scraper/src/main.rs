@@ -93,9 +93,12 @@ async fn main() -> Result<(), Error> {
 
     if let Some(embedded) = api_response._embedded {
         for event in embedded.events {
-            println!("Event Name: {}", event.name);
-            println!("Date: {}", event.dates.start.localDate);
-            println!("Time: {}", event.dates.start.localTime.as_ref().unwrap_or(&"Not Provided".to_string()));
+            println!(
+                "Event Name: {}, Date: {}, Time: {}",
+                event.name,
+                event.dates.start.localDate,
+                event.dates.start.localTime.as_ref().unwrap_or(&"Not Provided".to_string())
+            );
         }
     } else {
         println!("No events found.");
