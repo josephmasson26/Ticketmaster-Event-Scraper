@@ -59,7 +59,12 @@ async fn main() -> Result<(), Error> {
     let url = format!("https://app.ticketmaster.com/discovery/v2/events.json?dmaId={}&apikey={}", dma, api_key);
 
     let response = reqwest::get(&url).await?;
-    let api_response: ApiResponse = response.json().await?;
+
+
+    let response_body = response.text().await?;
+    std::fs::write("response.json", response_body.clone()).expect("Unable to write file");
+
+    let api_response: ApiResponse = serde_json::from_str(&response_body).expect("Unable to deserialize response");
 
     if let Some(embedded) = api_response._embedded {
         for event in embedded.events {
