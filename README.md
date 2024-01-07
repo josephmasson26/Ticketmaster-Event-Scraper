@@ -4,7 +4,7 @@ This is a Rust Command-Line application built with Serde to make calls to Ticket
 The app returns the top 20 concerts by DMA/city with their dates and times.
 
 ## API Key
-You need a Ticketmaster API key to run the program,which can be obtained for free from:
+You need a Ticketmaster API key to run the program, which can be obtained for free from:
 https://developer.ticketmaster.com/products-and-docs/apis/getting-started/
 
 ## Installation
