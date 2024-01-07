@@ -80,7 +80,7 @@ async fn main() -> Result<(), Error> {
         None => todo!(), 
     };
 
-    let url = format!("https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId={}&apikey=tPyusp1gwp8FjELQZo35hJYAYtN9u05l", dma);
+    let url = format!("https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId={}&apikey={}", dma, api_key);
 
     let response = reqwest::get(url).await?;
 
