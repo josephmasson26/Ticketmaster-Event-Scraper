@@ -14,7 +14,8 @@
 
 //Program Code:
 
-
+// Rust has several warnings for camel case variables, which are part of the JSON response from the API.
+// I disable these warnings for ease of use
 #![allow(warnings)]
 
 
@@ -23,9 +24,10 @@ use serde::Deserialize;
 use std::env;
 use std::io;
 
+// Include the hashmap structure from dma.rs
 mod dma;
 
-
+// These structs break up the JSON response into parts for easy deserialization
 #[derive(Debug, Deserialize)]
 struct ApiResponse {
     _embedded: Option<Embedded>,
@@ -83,28 +85,36 @@ struct Status {
 }
 
 
+// Main function of the program
 #[tokio::main]
 async fn main() -> Result<(), Error> {
+
+    // Get the API key from the environment variables
     let api_key = env::var("TICKETMASTER_API_KEY").expect("TICKETMASTER_API_KEY must be set");
 
+    // Get the hashmap of cities to DMA codes from dma.rs
     let city_to_dma = dma::get_hashmap();
 
+    // Get the city from the user
     println!("Enter a city:");
     let mut city = String::new();
     io::stdin().read_line(&mut city).expect("Failed to input city");
     let city = city.trim();
 
+    // Get the DMA code from the hashmap
     let dma: &&str = match city_to_dma.get(city) {
         Some(dma)=>dma,
         None => todo!(), 
     };
 
+    // Create the API call URL
     let url = format!("https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId={}&apikey={}", dma, api_key);
 
+    // Make the API call
     let response = reqwest::get(url).await?;
 
+    
     let response_body = response.text().await?;
-    std::fs::write("response.json", response_body.clone()).expect("Unable to write file");
 
     let api_response: ApiResponse = serde_json::from_str(&response_body).expect("Unable to deserialize response");
 
