@@ -82,7 +82,7 @@ async fn main() -> Result<(), Error> {
         //todo is a macro for unimplemented!()
     };
 
-    let url = ("https://app.ticketmaster.eu/mfxapi/v2/events?marketId=502&classificationName=music&apikey=tPyusp1gwp8FjELQZo35hJYAYtN9u05l");
+    let url = ("https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=220&apikey=tPyusp1gwp8FjELQZo35hJYAYtN9u05l");
 
     let response = reqwest::get(url).await?;
 
