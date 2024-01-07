@@ -104,7 +104,7 @@ async fn main() -> Result<(), Error> {
     // Get the DMA code from the hashmap
     let dma: &&str = match city_to_dma.get(city) {
         Some(dma)=>dma,
-        None => todo!(), 
+        None => panic!("City not found"),
     };
 
     // Create the API call URL
