@@ -40,7 +40,7 @@ struct Image {
 #[derive(Debug, Deserialize)]
 struct Dates {
     start: Start,
-    timezone: String,
+    timezone: Option<String>,
     status: Status,
     spanMultipleDays: bool,
 }
@@ -49,7 +49,7 @@ struct Dates {
 struct Start {
     localDate: String,
     localTime: Option<String>,
-    dateTime: String,
+    dateTime: Option<String>,
     dateTBD: bool,
     dateTBA: bool,
     timeTBA: bool,
