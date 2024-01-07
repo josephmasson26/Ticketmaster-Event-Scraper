@@ -4,6 +4,8 @@ use std::collections::HashMap;
 use std::env;
 use std::io;
 
+mod dma;
+
 
 #[derive(Debug, Deserialize)]
 struct ApiResponse {
@@ -66,10 +68,7 @@ struct Status {
 async fn main() -> Result<(), Error> {
     let api_key = env::var("TICKETMASTER_API_KEY").expect("TICKETMASTER_API_KEY must be set");
 
-    let mut city_to_dma = HashMap::new();
-    city_to_dma.insert("Barcelona", "902");
-    // Add more cities and their corresponding DMA codes here
-    // Add Hashmap later? Or an object of some type without 900 insert statements
+    let city_to_dma = dma::get_hashmap();
 
     println!("Enter a city:");
     let mut city = String::new();
@@ -79,10 +78,9 @@ async fn main() -> Result<(), Error> {
     let dma: &&str = match city_to_dma.get(city) {
         Some(dma)=>dma,
         None => todo!(), 
-        //todo is a macro for unimplemented!()
     };
 
-    let url = ("https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId=220&apikey=tPyusp1gwp8FjELQZo35hJYAYtN9u05l");
+    let url = format!("https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&dmaId={}&apikey={}", dma, api_key);
 
     let response = reqwest::get(url).await?;
 
