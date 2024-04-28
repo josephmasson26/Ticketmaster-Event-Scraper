@@ -19,6 +19,8 @@
 #![allow(warnings)]
 
 
+
+
 use reqwest::Error;
 use serde::Deserialize;
 use std::env;
@@ -83,6 +85,7 @@ struct Start {
 struct Status {
     code: String,
 }
+
 
 
 // Main function of the program
